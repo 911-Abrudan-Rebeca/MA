@@ -12,7 +12,7 @@ class ToDoViewModel : ViewModel(){
         return todoList
     }
 
-    fun addService(todo: ToDo) {
+    fun addToDo(todo: ToDo) {
         Log.d("ToDoViewModel", "FIRST todo list: ${todoList.value}")
         val currentToDos = todoList.value ?: mutableListOf()
         currentToDos.add(todo)
@@ -26,7 +26,7 @@ class ToDoViewModel : ViewModel(){
         todoList.value = newToDos
     }
 
-    fun updateService(updatedToDo: ToDo) {
+    fun updateToDo(updatedToDo: ToDo) {
         // Get the current list of services
         val currentToDos = todoList.value ?: mutableListOf()
 

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+    <style name="Button">
+        <item name="android:background">@color/dpink</item>
+        <item name="android:textColor">@color/lpink</item>
+        <item name="android:textSize">45dp</item>
+    </style>
+
+    <style name="EditText">
+        <item name="android:background">@color/mpink</item>
+        <item name="android:textColor">@color/lpink</item>
+    </style>
+
+    <style name="Check">
+        <item name="android:background">@color/dpink</item>
+        <item name="android:textColor">@color/lpink</item>
+    </style>
+
+    <style name="ConstraintLayout">
+        <item name="android:background">@color/lpink</item>
+        <item name="android:textColor">@color/mpink</item>
+        <item name="android:textSize">25dp</item>
+    </style>
+
+    <style name="TextView">
+        <item name="android:textColor">@color/mpink</item>
+    </style>
+</resources>

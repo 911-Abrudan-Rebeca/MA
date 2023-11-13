@@ -46,20 +46,28 @@ class AddToDoActivity : ComponentActivity() {
                     time,
                     details,
                     goal,
-                    emotion,
+                    emotion
                 );
 
                 Log.d("AddToDoActivity", "New ToDo: $newToDo")
 
 
-                // Add the new TpDp to your RecyclerView through your ViewModel
-                //todoViewModel.addToDo(newToDo)
+                // Add the new ToDos to the ViewModel
+                //toDoViewModel.addService(newToDo)
 
+                // Optionally, clear the EditText fields after submission
+                //clearEditTextFields()
+
+                // Notify observers of the data change
+//                toDoViewModel.getToDo().value?.let { updatedToDos ->
+//                    // Do something with updatedToDos if needed
+//                    Log.d("AddToDoActivity", "Updated ToDo List: $updatedToDos")
+//                }
                 // Optionally, clear the EditText fields after submission
                 clearEditTextFields()
 
                 val intent = Intent()
-                intent.putExtra("newService", newToDo)
+                intent.putExtra("newToDo", newToDo)
                 setResult(Activity.RESULT_OK, intent)
                 finish()
             }

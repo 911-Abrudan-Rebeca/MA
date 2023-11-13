@@ -1,8 +1,10 @@
 package com.example.planner
 
+import android.app.Activity
 import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import androidx.activity.ComponentActivity
@@ -58,7 +60,7 @@ class EditToDoActivity : ComponentActivity() {
         // Handle the "Submit Changes" button click
         btnSubmitChanges.setOnClickListener {
             // Create a new Service object with the updated details
-            val updatedService = ToDo(
+            val updatedToDo = ToDo(
                 etId.text.toString().toLong(),
                 etTitle.text.toString(),
                 etTime.text.toString(),
@@ -67,10 +69,17 @@ class EditToDoActivity : ComponentActivity() {
                 etEmotion.text.toString()
             )
 
+            //todoViewModel.updateService(updatedToDo)
+
+            // Notify observers of the data change
+//            todoViewModel.getToDo().value?.let { updatedToDos ->
+//                // Do something with updatedToDos if needed
+//                Log.d("EditToDoActivity", "Updated ToDos List: $updatedToDos")
+//            }
 
             // Pass the updated Service object to the previous activity
             val intent = Intent()
-            intent.putExtra("updatedService", updatedService)
+            intent.putExtra("updatedToDo", updatedToDo)
             setResult(RESULT_OK, intent)
             finish()
         }
@@ -78,18 +87,22 @@ class EditToDoActivity : ComponentActivity() {
         val btnDelete = findViewById<Button>(R.id.btnDelete)
 
         btnDelete.setOnClickListener {
-            // Show a confirmation dialog
             val dialogBuilder = AlertDialog.Builder(this)
-            dialogBuilder.setMessage("Are you sure you want to delete this todo?")
+            dialogBuilder.setMessage("Are you sure you want to delete this ToDo?")
                 .setCancelable(false)
                 .setPositiveButton("Yes") { _, _ ->
-                    // Delete the todos from your data source (e.g., ViewModel)
+                    todoViewModel.deleteToDo(etId.text.toString().toLong())
+
+                    // Notify observers of the data change
+                    todoViewModel.getToDo().value?.let { updatedToDos ->
+                        // Do something with updatedToDos if needed
+                        Log.d("EditToDoActivity", "Updated ToDo List: $updatedToDos")
+                    }
+
                     val intent = Intent()
                     intent.putExtra("deletedToDoId", etId.text.toString().toLong())
-                    setResult(RESULT_OK, intent)
+                    setResult(Activity.RESULT_OK, intent)
                     finish()
-                    // Navigate back to the previous screen (e.g., MainActivity)
-
                 }
                 .setNegativeButton("No") { dialog, _ ->
                     dialog.dismiss()

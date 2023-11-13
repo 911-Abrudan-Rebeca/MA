@@ -24,7 +24,7 @@ class MainActivity : ComponentActivity() {
                 val data: Intent? = result.data
                 val newToDo = data?.getParcelableExtra<ToDo>("newToDo")
                 if (newToDo != null) {
-                    todoViewModel.addService(newToDo)
+                    todoViewModel.addToDo(newToDo)
                 }
             }
         }
@@ -37,7 +37,7 @@ class MainActivity : ComponentActivity() {
             val updatedToDo = data?.getParcelableExtra<ToDo>("updatedToDo")
             if (updatedToDo != null) {
                 // Handle the Service
-                todoViewModel.updateService(updatedToDo)
+                todoViewModel.updateToDo(updatedToDo)
             } else {
                 // Check if the result contains a number (ID)
                 val deletedToDoId = data?.getLongExtra("deletedToDoId", -1)
@@ -54,10 +54,6 @@ class MainActivity : ComponentActivity() {
     }
 
 
-
-
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -70,9 +66,9 @@ class MainActivity : ComponentActivity() {
 
         // Simulate data loading or add your actual data
         val initialToDoList = mutableListOf(
-            ToDo(1,"gym", "1-2pm", "body", "x", "happy"),
-            ToDo(2,"study", "2-5pm", "career", "x", "stress relief"),
-            ToDo(3,"reading", "5-6pm", "growth","x", "disconnect")
+            ToDo(1,"gym", "1-2pm", "x", "body", "happy"),
+            ToDo(2,"study", "2-5pm", "x", "career", "stress relief"),
+            ToDo(3,"reading", "5-6pm", "x","growth", "relaxed")
         )
 
         // Initialize RecyclerView and Adapter

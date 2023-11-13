@@ -7,10 +7,10 @@ data class ToDo (
     val id: Long, //unique id for each activity
     val title: String,
     val time: String,
-    val goal: String,
     val details: String,
+    val goal: String,
     val emotion: String,
-    //val isChecked: Boolean = false
+    var isChecked: Boolean = false
 ) : Parcelable {
     constructor(parcel: Parcel) : this (
         parcel.readLong(),
@@ -19,17 +19,17 @@ data class ToDo (
         parcel.readString() ?: "",
         parcel.readString() ?: "",
         parcel.readString() ?: "",
-        //parcel.readBoolean()
+        parcel.readBoolean()
     )
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeLong(id)
         parcel.writeString(title)
         parcel.writeString(time)
-        parcel.writeString(goal)
         parcel.writeString(details)
+        parcel.writeString(goal)
         parcel.writeString(emotion)
-       // parcel.writeBoolean(isChecked)
+        parcel.writeBoolean(isChecked)
     }
 
     override fun describeContents(): Int {
