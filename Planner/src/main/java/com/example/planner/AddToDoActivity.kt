@@ -39,7 +39,7 @@ class AddToDoActivity : ComponentActivity() {
             }
             else {
 
-                // Create a new Service object
+                // Create a new ToDos object
                 val newToDo = ToDo(
                     idGenerator.generateUniqueId(),
                     title,

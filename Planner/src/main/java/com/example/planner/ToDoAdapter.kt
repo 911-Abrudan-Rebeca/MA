@@ -117,7 +117,7 @@ class ToDoAdapter (
         return todos.count { it.isChecked }
     }
 
-    fun setServices(newToDo: MutableList<ToDo>) {
+    fun setTodos(newToDo: MutableList<ToDo>) {
         todos = newToDo
         notifyDataSetChanged() // Notify the adapter of data change
     }

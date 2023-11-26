@@ -80,7 +80,7 @@ class MainActivity : ComponentActivity() {
 
         // Observe the LiveData from the ViewModel
         todoViewModel.getToDo().observe(this, Observer { newToDos ->
-            todoAdapter.setServices(newToDos as MutableList<ToDo>)
+            todoAdapter.setTodos(newToDos as MutableList<ToDo>)
         })
 
         todoViewModel.updateToDos(initialToDoList)
